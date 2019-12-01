@@ -126,6 +126,16 @@ contract CRY is Owned, StandardToken, usingProvable, SafeMath {
             bonus = _bonus;
         }
     }
+    function getIcoVariable() public view returns(uint,uint,uint,uint,uint,uint){
+        return (
+            startDate,
+            bonusEnds,
+            endDate,
+            hardCap,
+            softCap,
+            bonus
+        );
+    }
     function changeHashPower() internal {
         uint tempHashPower = 0;
         for (uint i = 0;i < poolList.length;i++){
@@ -149,6 +159,10 @@ contract CRY is Owned, StandardToken, usingProvable, SafeMath {
     }
     function getHolders() public view returns (address[] memory _holders) {
         return holders;
+    }
+    function getPoolLength() public view returns(uint _poolLength){
+        _poolLength = poolList.length;
+        return _poolLength;
     }
     function pay() public payable onlyOwner { }
     function () external payable {
